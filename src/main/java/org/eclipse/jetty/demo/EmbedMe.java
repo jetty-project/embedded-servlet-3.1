@@ -12,6 +12,8 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.eclipse.jetty.webapp.WebInfConfiguration;
 import org.eclipse.jetty.webapp.WebXmlConfiguration;
 
+import java.net.URL;
+
 public class EmbedMe
 {
     public static void main(String[] args) throws Exception
@@ -19,11 +21,10 @@ public class EmbedMe
         int port = 8080;
         Server server = new Server(port);
 
-        String wardir = "target/embedded-servlet-3.1-1-SNAPSHOT";
-
+        URL webXml = EmbedMe.class.getResource("/WEB-INF/web.xml");
         WebAppContext context = new WebAppContext();
-        context.setResourceBase(wardir);
-        context.setDescriptor(wardir + "WEB-INF/web.xml");
+        context.setResourceBase(webXml.toURI().resolve("..").toString());
+        context.setDescriptor(webXml.toString());
         context.setConfigurations(new Configuration[]
         { 
             new AnnotationConfiguration(), 
