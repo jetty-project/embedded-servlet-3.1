@@ -7,7 +7,7 @@
   <packaging>war</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jetty-version>9.2.7.v20150116</jetty-version>
+    <jetty-version>9.2.10.v20150310</jetty-version>
   </properties>
   <dependencies>
     <dependency>
