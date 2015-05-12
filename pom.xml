@@ -66,13 +66,14 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.2</version>
+        
         <configuration>
+          <mainClass>org.eclipse.jetty.demo.EmbedMe</mainClass>
           <classpathScope>test</classpathScope>
-          <executable>java</executable>
+          <additionalClasspathElements>
+            <additionalClasspathElement>${project.build.directory}/${pom.name}-${project.version}</additionalClasspathElement>
+          </additionalClasspathElements>          
           <arguments>
-            <argument>-cp</argument>
-            <classpath />
-            <argument>org.eclipse.jetty.demo.EmbedMe</argument>
             <argument>8080</argument>
           </arguments>
         </configuration>

@@ -8,7 +8,7 @@ produced by this project.
 Quick Start
 -----------
 
-    $ mvn clean install exec:exec
+    $ mvn clean install exec:java
 
 Open your web browser to
 
