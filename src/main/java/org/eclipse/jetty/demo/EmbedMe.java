@@ -64,7 +64,9 @@ public class EmbedMe
             URL webXml = classLoader.getResource('/'+webResourceRef);
             if (webXml != null)
             {
-                return webXml.toURI().resolve("..").normalize();
+                URI uri = webXml.toURI().resolve("..").normalize();
+                System.err.printf("WebResourceBase (Using ClassLoader reference) %s%n", uri);
+                return uri;
             }
         }
         catch (URISyntaxException e)
@@ -91,7 +93,9 @@ public class EmbedMe
                         // Does it have what we need?
                         if(Files.exists(possible))
                         {
-                            return possible.getParent().toUri();
+                            URI uri = path.toUri();
+                            System.err.printf("WebResourceBase (Using discovered /target/ Path) %s%n", uri);
+                            return uri;
                         }
                     }
                 }
@@ -101,7 +105,9 @@ public class EmbedMe
             Path srcWebapp = pwd.resolve("src/main/webapp/" + webResourceRef);
             if(Files.exists(srcWebapp))
             {
-                return srcWebapp.getParent().toUri();
+                URI uri = srcWebapp.getParent().toUri();
+                System.err.printf("WebResourceBase (Using /src/main/webapp/ Path) %s%n", uri);
+                return uri;
             }
         }
         catch (Throwable t)
